@@ -3,6 +3,8 @@
     import { Input } from "$lib/components/ui/input";
     import Icon from '@iconify/svelte';
 
+    const btnStyle = "flex items-center justify-center gap-5"
+
     let todoList = [
         "This is list 1",
     ]
@@ -30,15 +32,30 @@
 <div class="flex items-center justify-between px-5 py-10">
     <h1>ToDo List</h1>
     <div class="flex gap-10">
-        <Button variant={'secondary'}>Save</Button>
-        <Button variant={'destructive'}>Logout</Button>
+        <Button variant={'secondary'} class={btnStyle}>
+            <p class="text-2xl">
+                <Icon icon="material-symbols:save-outline" />
+            </p> 
+            <p>Save</p>
+        </Button>
+        <Button variant={'destructive'} class={btnStyle}>
+            <p class="text-2xl">
+                <Icon icon="uiw:logout" /> 
+            </p>
+            <p>Logout</p>
+        </Button>
     </div>
 </div>
 <p class="texts-2xl font-semibold px-10 text-green-500">Add ToDo:</p>
 <div class="flex w-2/3 gap-5 px-10">
     
     <Input bind:value={currentToDo} type="text" name="todo" id="todo" class="text-white bg-white/10 "/>
-    <Button on:click={handleNewTodo} >Add</Button>
+    <Button on:click={handleNewTodo} class={btnStyle}>
+        <p class="text-2xl">
+            <Icon icon="carbon:add-filled" />
+        </p>
+        <p>Add</p>
+    </Button>
 </div>
 <div class="p-5 md:p-10">
     {#if todoList.length < 1}
