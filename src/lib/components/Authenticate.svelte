@@ -38,8 +38,8 @@ const changeRegister = () => {
     </form>
     <div class="flex items-center justify-center gap-5 w-full text-lg md:text-xl capitalize font-bold"><hr class="w-[45%]"/>or <hr class="w-[45%]"/></div>
     {#if register}
-        <p on:click={changeRegister} on:keypress={()=>{}} class="text-xl font-bold cursor-pointer hover:text-white/80 hover:underline" >Already Have An Account : <span class="text-cyan-500 hover:text-cyan-600">Login</span></p>
+        <button on:click={changeRegister} class="text-xl font-bold cursor-pointer hover:text-white/80 hover:underline" >Already Have An Account : <span class="text-cyan-500 hover:text-cyan-600">Login</span></button>
     {:else}
-        <p on:click={changeRegister} on:keypress={()=>{}} class="text-xl font-bold cursor-pointer hover:text-white/80 hover:underline" >Create An Account : <span class="text-green-500 hover:text-green-600">Register</span></p>
+        <button on:click={changeRegister}  class="text-xl font-bold cursor-pointer hover:text-white/80 hover:underline" >Create An Account : <span class="text-green-500 hover:text-green-600">Register</span></button>
     {/if}
 </div>
