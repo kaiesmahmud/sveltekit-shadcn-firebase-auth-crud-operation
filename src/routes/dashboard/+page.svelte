@@ -14,6 +14,17 @@
             currentToDo = "";
         }
     }
+    const editTodo = (index)=>{
+        console.log("Edit-Todo Clicked ",todoList[index])
+        let newTodolist = todoList.filter((val,i)=> i !== index); // Removing the item from the list
+        currentToDo = todoList[index] ; // Give the item to the input field -- if click on add btn then item will be added as new item
+        todoList = newTodolist ; // Save the list without the item 
+    }
+    const removeTodo = (index)=>{
+        console.log("Remove-Todo Clicked ",index)
+        let newTodolist = todoList.filter((val,i)=> i !== index); // Removing the item from the list
+        todoList = newTodolist ; // Save the list without the item 
+    }
 </script>
 
 <div class="flex items-center justify-between px-5 py-10">
@@ -30,16 +41,21 @@
     <Button on:click={handleNewTodo} >Add</Button>
 </div>
 <div class="p-5 md:p-10">
+    {#if todoList.length < 1}
+    <div class="border-b border-cyan-500 p-3 md:p-5 text-xl md:text-2xl my-2 flex items-center justify-between">
+        You Have Nothing Here ! Create one 
+    </div>
+    {/if}
     {#each todoList as todo,index}
         <div class="border-b border-cyan-500 p-3 md:p-5 text-xl md:text-2xl my-2 flex items-center justify-between">
             <p>{index+1}. {todo}</p>
             <div class="flex items-center justify-center gap-5 ">
-                <div class="text-4xl hover:text-teal-500 rounded-full p-3 bg-slate-600 cursor-pointer  transition-all ease-in">
+                <button on:click={()=>{editTodo(index)}} class="text-4xl hover:text-teal-500 rounded-full p-3 bg-slate-600 cursor-pointer  transition-all ease-in">
                     <Icon icon="mdi:application-edit" />
-                </div>
-                <div class="text-4xl hover:text-red-500 p-3 rounded-full bg-red-100 text-red-900 cursor-pointer hover:bg-red-200 transition-all ease-in">
+                </button>
+                <button  on:click={()=>{removeTodo(index)}} class="text-4xl hover:text-red-500 p-3 rounded-full bg-red-100 text-red-900 cursor-pointer hover:bg-red-200 transition-all ease-in">
                     <Icon icon="material-symbols:delete" />
-                </div>
+                </button>
             </div>
         </div>
     {/each}
